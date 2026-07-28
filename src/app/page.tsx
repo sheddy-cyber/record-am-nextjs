@@ -223,25 +223,67 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [userInteractedStock]);
 
-  // --- Bento Widget: WhatsApp reminder ---
+  // --- Bento Widget: WhatsApp reminder with self-animation ---
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
     { text: "Hello Kofi, this is a record of your purchases at Amadi's Store. Remaining balance: ₦50,000.", isSent: false, time: "11:20 AM" }
   ]);
   const [hasSentReminder, setHasSentReminder] = useState(false);
+  const [userInteractedDebt, setUserInteractedDebt] = useState(false);
+
+  useEffect(() => {
+    if (userInteractedDebt) return;
+
+    const initialMsg: ChatMessage = {
+      text: "Hello Kofi, this is a record of your purchases at Amadi's Store. Remaining balance: ₦50,000.",
+      isSent: false,
+      time: "11:20 AM",
+    };
+    const reminderMsg: ChatMessage = {
+      text: "Hi Kofi, this is a friendly reminder to settle your balance of ₦50,000 at your earliest convenience. Thanks! 🙏",
+      isSent: true,
+      time: "Just Now",
+    };
+
+    let step = 0;
+    const interval = setInterval(() => {
+      step = (step + 1) % 2;
+      if (step === 1) {
+        setChatMessages([initialMsg, reminderMsg]);
+        setHasSentReminder(true);
+      } else {
+        setChatMessages([initialMsg]);
+        setHasSentReminder(false);
+      }
+    }, 3400);
+
+    return () => clearInterval(interval);
+  }, [userInteractedDebt]);
 
   const handleSendReminder = () => {
+    setUserInteractedDebt(true);
     if (hasSentReminder) return;
     const newMsg: ChatMessage = {
       text: "Hi Kofi, this is a friendly reminder to settle your balance of ₦50,000 at your earliest convenience. Thanks! 🙏",
       isSent: true,
       time: "Just Now",
     };
-    setChatMessages([...chatMessages, newMsg]);
+    setChatMessages(prev => [...prev, newMsg]);
     setHasSentReminder(true);
   };
 
-  // --- Bento Widget: Offline syncing toggle ---
+  // --- Bento Widget: Offline syncing toggle with self-animation ---
   const [isOnline, setIsOnline] = useState(true);
+  const [userInteractedOffline, setUserInteractedOffline] = useState(false);
+
+  useEffect(() => {
+    if (userInteractedOffline) return;
+
+    const interval = setInterval(() => {
+      setIsOnline(prev => !prev);
+    }, 3600);
+
+    return () => clearInterval(interval);
+  }, [userInteractedOffline]);
 
   // --- Leakage Calculator State with self-animation ---
   const [dailySales, setDailySales] = useState(80000);
@@ -605,7 +647,6 @@ export default function Home() {
               </p>
             </div>
             <div className="bento-visual">
-              <span className="auto-demo-badge">✨ Auto-Demo (Click to test)</span>
               {showKeypadToast && (
                 <div className="sales-keypad-toast">
                   Saved!
@@ -642,7 +683,6 @@ export default function Home() {
               </p>
             </div>
             <div className="bento-visual">
-              <span className="auto-demo-badge">✨ Auto-Sliding (Drag to test)</span>
               <div className="stock-slider-widget">
                 <div className="stock-slider-info">
                   <span className="stock-slider-item-name">MacBook Stock</span>
@@ -655,7 +695,12 @@ export default function Home() {
                   min="0" 
                   max="10" 
                   value={sliderStock} 
-                  onChange={(e) => setSliderStock(parseInt(e.target.value, 10))}
+                  onMouseDown={() => setUserInteractedStock(true)}
+                  onTouchStart={() => setUserInteractedStock(true)}
+                  onChange={(e) => {
+                    setUserInteractedStock(true);
+                    setSliderStock(parseInt(e.target.value, 10));
+                  }}
                   className="stock-slider-control"
                 />
                 {sliderStock <= 3 && (
@@ -725,7 +770,10 @@ export default function Home() {
                     <input 
                       type="checkbox" 
                       checked={isOnline} 
-                      onChange={(e) => setIsOnline(e.target.checked)} 
+                      onChange={(e) => {
+                        setUserInteractedOffline(true);
+                        setIsOnline(e.target.checked);
+                      }} 
                     />
                     <span className="offline-slider"></span>
                   </label>
@@ -796,9 +844,6 @@ export default function Home() {
 
         <div className="calculator-container glass reveal">
           <div className="calculator-sliders">
-            <span className="auto-demo-badge" style={{ marginBottom: "8px", alignSelf: "flex-start" }}>
-              ✨ Live Auto-Calculator (Drag sliders to test manually)
-            </span>
             <div className="calc-group">
               <div className="calc-label-row">
                 <span className="calc-label">Average Daily Sales</span>
