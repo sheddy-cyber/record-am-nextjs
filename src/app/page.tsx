@@ -758,19 +758,27 @@ export default function Home() {
           {[
             {
               q: "Does Record Am work without any internet access?",
-              a: "Yes, Record Am is built offline-first. It saves all your data (sales logs, stock logs, customer debts) inside a local database on your Android phone. You don't need mobile data or WiFi to run the app in the market.",
+              a: "Yes, Record Am is built offline-first. It saves all your sales, inventory, expenses, and customer debts locally on your phone so you can keep recording transactions in the market even without mobile data or WiFi.",
             },
             {
               q: "Where is my data stored and is it secure?",
-              a: "Your data is stored locally in SQLite/Room on your device. Once you reconnect to the internet, you can enable automatic encrypted cloud sync to ensure you never lose your data, even if your phone gets lost.",
+              a: "Your records are saved locally on your device and automatically synced with a secure Supabase cloud database protected by Row Level Security (RLS). You never lose your business records, even if you switch phones.",
+            },
+            {
+              q: "How do I install the app after downloading the APK?",
+              a: "Once downloaded, tap the record-am.apk file on your phone. If Android shows a security prompt, tap 'Settings', enable 'Allow from this source', and tap 'Install'. The app opens instantly with zero loading screen delays.",
+            },
+            {
+              q: "How large is the APK and what Android version is required?",
+              a: "The standalone APK is ~109 MB, containing the complete offline database engine, native libraries, and Hermes bytecode optimizer. It runs smoothly on any Android phone running Android 7.0 (Nougat) or higher.",
+            },
+            {
+              q: "Can I manage multiple business branches?",
+              a: "Yes! Record Am supports multi-branch management and branch switching directly within your workspace.",
             },
             {
               q: "Is the app free to use?",
-              a: "Yes, the offline logging, inventory alerts, and debt tracker features are 100% free to use. Premium cloud backups and multi-device sharing options will be available as low-cost options.",
-            },
-            {
-              q: "How large is the app and will it run on my older Android device?",
-              a: "Record Am is highly optimized, weighing only 8.2 MB. It is designed to run efficiently on any Android device running Android 7.0 (Nougat) or higher.",
+              a: "Yes, all core bookkeeping features—including sales logging, stock tracking, debt management, and profit analytics—are 100% free.",
             },
           ].map((item, index) => (
             <div 
