@@ -803,18 +803,18 @@ export default function Home() {
               Stop guessing your sales. Track profits, stocks, and debts accurately, offline.
               Download the APK directly and install in under a minute.
             </p>
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <button className="btn btn-primary">
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center" }}>
+              <a href="/record-am.apk" download="record-am.apk" className="btn btn-primary">
                 <span>⬇</span> Download APK
-              </button>
+              </a>
               <div className="cta-meta">
                 <div className="cta-meta-item">
                   <span className="cta-meta-lbl">File Size</span>
-                  <span className="cta-meta-val">8.2 MB</span>
+                  <span className="cta-meta-val">109.5 MB</span>
                 </div>
                 <div className="cta-meta-item">
                   <span className="cta-meta-lbl">Version</span>
-                  <span className="cta-meta-val">v1.0.4 (Stable)</span>
+                  <span className="cta-meta-val">v1.0.0 (Stable)</span>
                 </div>
                 <div className="cta-meta-item">
                   <span className="cta-meta-lbl">Platform</span>
