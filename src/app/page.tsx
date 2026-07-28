@@ -229,7 +229,12 @@ export default function Home() {
 
           <div className="nav-actions">
             <a href="#download" className="btn btn-nav">
-              Download APK
+              <svg className="download-btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Download APK</span>
             </a>
             
             <button 
@@ -250,8 +255,13 @@ export default function Home() {
             <a href="#features" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Features</a>
             <a href="#calculator" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>P&L Estimator</a>
             <a href="#faq" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-            <a href="#download" className="btn btn-primary mobile-download-btn" onClick={() => setMobileMenuOpen(false)}>
-              Download APK (109.5 MB)
+            <a href="/record-am.apk" download="record-am.apk" className="btn btn-primary mobile-download-btn" onClick={() => setMobileMenuOpen(false)}>
+              <svg className="download-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Download APK (109.5 MB)</span>
             </a>
           </div>
         </div>
@@ -272,7 +282,14 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <a href="#download" className="btn btn-primary">Get Started Now</a>
+            <a href="/record-am.apk" download="record-am.apk" className="btn btn-primary">
+              <svg className="download-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Get Started Now</span>
+            </a>
             <a href="#features" className="btn btn-secondary">Explore Features</a>
           </div>
         </div>
@@ -839,7 +856,12 @@ export default function Home() {
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center" }}>
               <a href="/record-am.apk" download="record-am.apk" className="btn btn-primary">
-                <span>⬇</span> Download APK
+                <svg className="download-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <span>Download APK</span>
               </a>
               <div className="cta-meta">
                 <div className="cta-meta-item">
