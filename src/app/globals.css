@@ -341,6 +341,9 @@ body {
   -webkit-text-fill-color: transparent;
   background-size: 200% auto;
   animation: text-shine 5s linear infinite;
+  display: inline-block;
+  padding-right: 0.28em;
+  margin-right: -0.28em;
 }
 
 .hero-subtitle {

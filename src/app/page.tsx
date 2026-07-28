@@ -388,7 +388,7 @@ export default function Home() {
           <div className="hero-badge">Offline bookkeeping made simple</div>
           <h1 className="hero-title">
             Sales, stocks, expenses? <br />
-            <span className="text-gradient" style={{ fontStyle: "italic" }}>Record am!</span>
+            <span className="text-gradient" style={{ fontStyle: "italic", display: "inline-block", paddingRight: "0.25em" }}>Record am!</span>
           </h1>
           <p className="hero-subtitle">
             Log sales, track inventory levels, monitor business expenses, and manage debt. 
