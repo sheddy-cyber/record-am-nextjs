@@ -29,6 +29,8 @@ interface ChatMessage {
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   // --- Global Intersection Observer for animations ---
   useEffect(() => {
     // Navbar blur effect on scroll
@@ -212,7 +214,7 @@ export default function Home() {
       {/* Floating Glass Navbar */}
       <nav className="navbar">
         <div className="nav-container">
-          <div className="logo-group" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <div className="logo-group" onClick={() => { setMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
             <div className="logo-wrapper">
               <Image src="/logo.png" alt="Record Am Logo" className="logo" width={32} height={32} />
             </div>
@@ -225,9 +227,33 @@ export default function Home() {
             <a href="#faq" className="nav-link">FAQ</a>
           </div>
 
-          <a href="#download" className="btn btn-nav">
-            Download APK
-          </a>
+          <div className="nav-actions">
+            <a href="#download" className="btn btn-nav">
+              Download APK
+            </a>
+            
+            <button 
+              className={`mobile-hamburger ${mobileMenuOpen ? "active" : ""}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Mobile Navigation"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        <div className={`mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}`}>
+          <div className="mobile-nav-links">
+            <a href="#features" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Features</a>
+            <a href="#calculator" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>P&L Estimator</a>
+            <a href="#faq" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+            <a href="#download" className="btn btn-primary mobile-download-btn" onClick={() => setMobileMenuOpen(false)}>
+              Download APK (109.5 MB)
+            </a>
+          </div>
         </div>
       </nav>
 

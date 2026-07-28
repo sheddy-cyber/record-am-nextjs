@@ -1917,3 +1917,327 @@ footer {
     min-height: 200px;
   }
 }
+
+/* --- Comprehensive Mobile Responsiveness --- */
+
+/* Nav Actions & Mobile Hamburger */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 105;
+}
+
+.mobile-hamburger span {
+  width: 100%;
+  height: 2.5px;
+  background: var(--text-white);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.mobile-hamburger.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.mobile-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-hamburger.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  background: rgba(6, 9, 19, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 24px 20px 32px;
+  transform: translateY(-120%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 99;
+}
+
+.mobile-nav-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-nav-link {
+  color: var(--text-gray-light);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: color 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--accent-primary);
+}
+
+.mobile-download-btn {
+  margin-top: 12px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* Mobile Breakpoint (<768px) */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .btn-nav {
+    display: none;
+  }
+
+  .mobile-hamburger {
+    display: flex;
+  }
+
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding-top: 110px;
+    padding-bottom: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 7.5vw, 3.2rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.8px !important;
+  }
+
+  .hero-badge {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .hero-visual {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .phone-frame {
+    width: 100%;
+    max-width: 330px;
+    margin: 0 auto;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Bento Grid Mobile Layout */
+  .features-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .bento-item {
+    padding: 20px 16px !important;
+  }
+
+  .bento-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .bento-content p {
+    font-size: 0.92rem;
+  }
+
+  /* Keypad Emulator Widget on Mobile */
+  .emulator-keypad {
+    gap: 8px !important;
+  }
+
+  .keypad-btn {
+    padding: 12px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Calculator Section Mobile Layout */
+  .calculator-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .calculator-grid {
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px !important;
+    gap: 24px !important;
+  }
+
+  .calculator-inputs {
+    padding-right: 0 !important;
+  }
+
+  .result-card-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .result-box {
+    width: 100% !important;
+  }
+
+  .result-savings-hero {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+
+  .result-savings-badge {
+    align-self: flex-start !important;
+  }
+
+  /* FAQ Accordion Mobile Layout */
+  .faq-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .faq-question-btn {
+    padding: 16px 14px !important;
+    font-size: 0.98rem !important;
+  }
+
+  .faq-answer {
+    padding: 0 14px 16px !important;
+  }
+
+  .faq-answer p {
+    font-size: 0.9rem !important;
+  }
+
+  /* CTA Banner Mobile Layout */
+  .cta-banner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cta-container {
+    padding: 28px 18px !important;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  .cta-title {
+    font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
+    line-height: 1.18 !important;
+  }
+
+  .cta-description {
+    font-size: 0.98rem !important;
+    margin-bottom: 24px !important;
+  }
+
+  .cta-text > div {
+    justify-content: center !important;
+  }
+
+  .cta-text .btn-primary {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 16px 20px !important;
+  }
+
+  .cta-meta {
+    width: 100% !important;
+    justify-content: space-around !important;
+    margin-top: 20px !important;
+  }
+
+  .qr-card {
+    margin-top: 24px;
+    padding: 16px !important;
+  }
+
+  /* Footer Mobile Layout */
+  footer {
+    margin: 40px 16px 24px !important;
+    padding: 24px 16px !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    text-align: center !important;
+  }
+}
+
+/* Extra Small Phones (<400px) */
+@media (max-width: 400px) {
+  .brand-name {
+    font-size: 1.1rem;
+  }
+
+  .logo-wrapper {
+    padding: 4px;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .cta-meta {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+}
