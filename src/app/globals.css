@@ -893,6 +893,29 @@ body {
   transform: scale(1.02);
 }
 
+.sales-keypad-btn.self-active {
+  background: rgba(99, 102, 241, 0.35) !important;
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  color: var(--text-white) !important;
+  transform: scale(0.94);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+}
+
+.auto-demo-badge {
+  background: rgba(99, 102, 241, 0.12);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: pulse-glow-1 3s infinite alternate;
+}
+
 .sales-keypad-toast {
   position: absolute;
   top: 10px;
@@ -1566,8 +1589,10 @@ input:checked + .offline-slider:before {
 
 .faq-answer {
   max-height: 0;
+  opacity: 0;
+  visibility: hidden;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.4s ease, visibility 0.4s;
   padding: 0 24px;
   color: var(--text-gray-muted);
   font-size: 0.95rem;
@@ -1575,8 +1600,10 @@ input:checked + .offline-slider:before {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 180px;
-  padding-bottom: 20px;
+  max-height: 350px;
+  opacity: 1;
+  visibility: visible;
+  padding: 0 24px 20px;
 }
 
 .faq-icon {
@@ -2235,7 +2262,17 @@ footer {
   }
 
   .faq-answer {
-    padding: 0 14px 16px !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    padding: 0 14px !important;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 400px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: 0 14px 18px !important;
   }
 
   .faq-answer p {

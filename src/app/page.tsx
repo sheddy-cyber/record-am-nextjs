@@ -136,11 +136,51 @@ export default function Home() {
     setHasAddedExpense(true);
   };
 
-  // --- Bento Widget: Keypad widget ---
+  // --- Bento Widget: Keypad widget with self-animation ---
   const [keypadVal, setKeypadVal] = useState("₦0");
   const [showKeypadToast, setShowKeypadToast] = useState(false);
+  const [userInteractedKeypad, setUserInteractedKeypad] = useState(false);
+  const [activeKeypadBtn, setActiveKeypadBtn] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (userInteractedKeypad) return;
+
+    let timers: NodeJS.Timeout[] = [];
+    const sequence = [
+      { action: () => { setKeypadVal("₦1"); setActiveKeypadBtn("1"); }, delay: 800 },
+      { action: () => { setKeypadVal("₦15"); setActiveKeypadBtn("5"); }, delay: 1400 },
+      { action: () => { setKeypadVal("₦15,0"); setActiveKeypadBtn("0"); }, delay: 2000 },
+      { action: () => { setKeypadVal("₦15,000"); setActiveKeypadBtn("0"); }, delay: 2600 },
+      { 
+        action: () => { 
+          setActiveKeypadBtn("Record"); 
+          setShowKeypadToast(true); 
+          setTimeout(() => { setShowKeypadToast(false); setActiveKeypadBtn(null); }, 1200); 
+        }, 
+        delay: 3400 
+      },
+      { action: () => { setKeypadVal("₦0"); setActiveKeypadBtn(null); }, delay: 4600 },
+    ];
+
+    const runSequence = () => {
+      timers.forEach(t => clearTimeout(t));
+      timers = sequence.map(item => setTimeout(item.action, item.delay));
+    };
+
+    runSequence();
+    const mainInterval = setInterval(runSequence, 5600);
+
+    return () => {
+      clearInterval(mainInterval);
+      timers.forEach(t => clearTimeout(t));
+    };
+  }, [userInteractedKeypad]);
 
   const handleKeypadPress = (val: string) => {
+    setUserInteractedKeypad(true);
+    setActiveKeypadBtn(val);
+    setTimeout(() => setActiveKeypadBtn(null), 300);
+
     if (val === "C") {
       setKeypadVal("₦0");
       return;
@@ -164,8 +204,24 @@ export default function Home() {
     }
   };
 
-  // --- Bento Widget: Stock alert slider ---
+  // --- Bento Widget: Stock alert slider with self-animation ---
   const [sliderStock, setSliderStock] = useState(5);
+  const [userInteractedStock, setUserInteractedStock] = useState(false);
+
+  useEffect(() => {
+    if (userInteractedStock) return;
+
+    let dir = 1;
+    const interval = setInterval(() => {
+      setSliderStock(prev => {
+        if (prev >= 15) dir = -1;
+        if (prev <= 3) dir = 1;
+        return prev + dir * 3;
+      });
+    }, 2200);
+
+    return () => clearInterval(interval);
+  }, [userInteractedStock]);
 
   // --- Bento Widget: WhatsApp reminder ---
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
@@ -187,9 +243,26 @@ export default function Home() {
   // --- Bento Widget: Offline syncing toggle ---
   const [isOnline, setIsOnline] = useState(true);
 
-  // --- Leakage Calculator State ---
+  // --- Leakage Calculator State with self-animation ---
   const [dailySales, setDailySales] = useState(80000);
   const [leakagePercent, setLeakagePercent] = useState(8);
+  const [userInteractedCalc, setUserInteractedCalc] = useState(false);
+
+  useEffect(() => {
+    if (userInteractedCalc) return;
+
+    let step = 0;
+    const interval = setInterval(() => {
+      step = (step + 1) % 6;
+      const salesPoints = [60000, 95000, 140000, 180000, 110000, 75000];
+      const leakagePoints = [5, 9, 12, 15, 10, 7];
+
+      setDailySales(salesPoints[step]);
+      setLeakagePercent(leakagePoints[step]);
+    }, 2800);
+
+    return () => clearInterval(interval);
+  }, [userInteractedCalc]);
 
   const annualRevenue = dailySales * 300; // 300 working days
   const projectedLeakage = annualRevenue * (leakagePercent / 100);
@@ -272,9 +345,8 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-badge">Offline bookkeeping made simple</div>
           <h1 className="hero-title">
-            Sales, stocks, <br />
-            expenses? <br />
-            <span className="text-gradient">Record Am.</span>
+            Sales, stocks, expenses? <br />
+            <span className="text-gradient" style={{ fontStyle: "italic" }}>Record am!</span>
           </h1>
           <p className="hero-subtitle">
             Log sales, track inventory levels, monitor business expenses, and manage debt. 
@@ -533,6 +605,7 @@ export default function Home() {
               </p>
             </div>
             <div className="bento-visual">
+              <span className="auto-demo-badge">✨ Auto-Demo (Click to test)</span>
               {showKeypadToast && (
                 <div className="sales-keypad-toast">
                   Saved!
@@ -548,7 +621,7 @@ export default function Home() {
                     <button 
                       key={val} 
                       onClick={() => handleKeypadPress(val)}
-                      className={`sales-keypad-btn ${val === "Record" ? "action" : ""}`}
+                      className={`sales-keypad-btn ${val === "Record" ? "action" : ""} ${activeKeypadBtn === val ? "self-active" : ""}`}
                       style={{ gridColumn: val === "Record" ? "span 2" : "span 1" }}
                     >
                       {val}
@@ -569,6 +642,7 @@ export default function Home() {
               </p>
             </div>
             <div className="bento-visual">
+              <span className="auto-demo-badge">✨ Auto-Sliding (Drag to test)</span>
               <div className="stock-slider-widget">
                 <div className="stock-slider-info">
                   <span className="stock-slider-item-name">MacBook Stock</span>
@@ -722,6 +796,9 @@ export default function Home() {
 
         <div className="calculator-container glass reveal">
           <div className="calculator-sliders">
+            <span className="auto-demo-badge" style={{ marginBottom: "8px", alignSelf: "flex-start" }}>
+              ✨ Live Auto-Calculator (Drag sliders to test manually)
+            </span>
             <div className="calc-group">
               <div className="calc-label-row">
                 <span className="calc-label">Average Daily Sales</span>
@@ -733,7 +810,12 @@ export default function Home() {
                 max={500000} 
                 step={5000}
                 value={dailySales} 
-                onChange={(e) => setDailySales(parseInt(e.target.value, 10))}
+                onMouseDown={() => setUserInteractedCalc(true)}
+                onTouchStart={() => setUserInteractedCalc(true)}
+                onChange={(e) => {
+                  setUserInteractedCalc(true);
+                  setDailySales(parseInt(e.target.value, 10));
+                }}
                 className="calc-slider"
               />
             </div>
@@ -754,7 +836,12 @@ export default function Home() {
                 max={20} 
                 step={1}
                 value={leakagePercent} 
-                onChange={(e) => setLeakagePercent(parseInt(e.target.value, 10))}
+                onMouseDown={() => setUserInteractedCalc(true)}
+                onTouchStart={() => setUserInteractedCalc(true)}
+                onChange={(e) => {
+                  setUserInteractedCalc(true);
+                  setLeakagePercent(parseInt(e.target.value, 10));
+                }}
                 className="calc-slider"
               />
             </div>
