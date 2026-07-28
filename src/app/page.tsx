@@ -376,7 +376,7 @@ export default function Home() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              <span>Download APK (109.5 MB)</span>
+              <span>Download APK (61.4 MB)</span>
             </a>
           </div>
         </div>
@@ -945,7 +945,7 @@ export default function Home() {
             },
             {
               q: "How large is the APK and what Android version is required?",
-              a: "The standalone APK is ~109 MB, containing the complete offline database engine, native libraries, and Hermes bytecode optimizer. It runs smoothly on any Android phone running Android 7.0 (Nougat) or higher.",
+              a: "The standalone APK is ~61 MB, containing the complete offline database engine, native libraries, and Hermes bytecode optimizer. It runs smoothly on any Android phone running Android 7.0 (Nougat) or higher.",
             },
             {
               q: "Can I manage multiple business branches?",
@@ -998,7 +998,7 @@ export default function Home() {
               <div className="cta-meta">
                 <div className="cta-meta-item">
                   <span className="cta-meta-lbl">File Size</span>
-                  <span className="cta-meta-val">109.5 MB</span>
+                  <span className="cta-meta-val">61.4 MB</span>
                 </div>
                 <div className="cta-meta-item">
                   <span className="cta-meta-lbl">Version</span>
