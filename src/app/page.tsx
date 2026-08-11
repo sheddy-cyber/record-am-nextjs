@@ -830,6 +830,40 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Bento Item 6: Team & Staff Management */}
+          <div className="bento-item glass reveal-delay-2">
+            <div className="bento-content">
+              <h3>Team Management</h3>
+              <p>
+                Add staff, assign roles (Manager, Cashier, Auditor), and control access permissions effortlessly.
+              </p>
+            </div>
+            <div className="bento-visual">
+              <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '8px', padding: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'var(--bg-card, rgba(255,255,255,0.05))', padding: '10px', borderRadius: '8px', border: '1px solid var(--border, rgba(255,255,255,0.1))' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '32px', height: '32px', borderRadius: '16px', backgroundColor: 'var(--accent, #e63946)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 'bold' }}>J</div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main, #fff)' }}>John Doe</span>
+                      <span style={{ fontSize: '11px', color: 'var(--text-muted, rgba(255,255,255,0.6))' }}>johndoe@email.com</span>
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '10px', fontWeight: 'bold', backgroundColor: 'rgba(230, 57, 70, 0.2)', color: 'var(--accent, #e63946)', padding: '2px 8px', borderRadius: '12px' }}>MANAGER</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'var(--bg-card, rgba(255,255,255,0.05))', padding: '10px', borderRadius: '8px', border: '1px solid var(--border, rgba(255,255,255,0.1))' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '32px', height: '32px', borderRadius: '16px', backgroundColor: '#3498db', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 'bold' }}>A</div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main, #fff)' }}>Alice Smith</span>
+                      <span style={{ fontSize: '11px', color: 'var(--text-muted, rgba(255,255,255,0.6))' }}>alice@email.com</span>
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '10px', fontWeight: 'bold', backgroundColor: 'rgba(52, 152, 219, 0.2)', color: '#3498db', padding: '2px 8px', borderRadius: '12px' }}>CASHIER</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
